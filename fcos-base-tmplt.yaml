@@ -429,7 +429,7 @@
           strategy = "periodic"
 
           [updates.periodic]
-          time_zone = "Europe/Warsaw"
+          time_zone = "America/Denver"
 
           [[updates.periodic.window]]
           days = [ "Sun" ]
