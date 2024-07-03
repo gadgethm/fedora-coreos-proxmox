@@ -429,12 +429,15 @@
           strategy = "periodic"
 
           [updates.periodic]
-          time_zone = "America/Denver"
+          time_zone = "localtime"
 
           [[updates.periodic.window]]
           days = [ "Sun" ]
           start_time = "03:30"
           length_minutes = 60
+  links:
+    - path: /etc/localtime
+      target: ../usr/share/zoneinfo/America/Denver
 
 # geco-motd.service
 systemd:
