@@ -325,7 +325,7 @@
       contents:
         inline: |
           AllowAgentForwarding no
-          X11Forwarding NO
+          X11Forwarding no
           TCPKeepAlive no
           MaxSessions 2
           MaxAuthTries 3
