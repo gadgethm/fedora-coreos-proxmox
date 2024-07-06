@@ -480,22 +480,21 @@ systemd:
         [Install]
         WantedBy=multi-user.target
 
-# qemu-guest-agent
-    - name: setup-qemu-guest-agent.service
+# install-packages
+    - name: install-packages.service
       enabled: true
       contents: |
         [Unit]
-        Description=Setup Qemu Guest Agent
+        Description=Install base packages
         After=network-online.target
         Require=network-online.target
-        ConditionKernelCommandLine=ignition.platform.id=qemu
-        ConditionPathExists=!/var/lib/qemu-guest-agent.stamp
+        ConditionPathExists=!/var/lib/install-packages.stamp
 
         [Service]
         Type=oneshot
         RemainAfterExit=yes
-        ExecStart=/bin/rpm-ostree install qemu-guest-agent
-        ExecStart=/bin/touch /var/lib/qemu-guest-agent.stamp
+        ExecStart=/bin/rpm-ostree install qemu-guest-agent python3 python3-requests
+        ExecStart=/bin/touch /var/lib/install-packages.stamp
         ExecStart=/bin/systemctl --no-block reboot
 
         [Install]
