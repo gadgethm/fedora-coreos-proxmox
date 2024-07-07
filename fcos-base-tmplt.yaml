@@ -268,6 +268,13 @@
 
           System information:
 
+# issue.net
+    - path: /etc/issue.net
+      overwrite: true
+      mode: 0644
+      contents:
+        inline: ""
+
 #blacklist protocol/drivers
     - path: /etc/modprobe.d/blacklist.conf
       mode: 0644
