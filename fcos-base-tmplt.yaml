@@ -8,7 +8,7 @@
           OUT=/etc/motd.d/20_status.motd
           
           echo -ne "" > ${OUT}
-          echo -e "\e[1;2;32mWelcome to \e[0;1mFedora\e[1;2;32m!\n" >> ${OUT}
+          echo -e "\e[1;2;32mWelcome to \e[0;1mFedora\e[1;2;32m!" >> ${OUT}
           eval "$(grep -E ^PRETTY_NAME /etc/os-release)" && echo -e "\e[0;38;2;60;110;180mOperating System:\e[0;37m ${PRETTY_NAME}" >> ${OUT}
           echo -e "\e[0;38;2;60;110;180mUpdate Status:\e[1;2;36m $(systemctl show zincati.service -P StatusText)" >> ${OUT}
           echo -e "\e[0;38;2;60;110;180mKernel:\e[0;37m $(uname -r)" >> ${OUT}
@@ -23,7 +23,7 @@
           echo -e "\n\e[1;2;33mHostname:\e[0m "$(hostname -f) >> ${OUT}  
           sleep 1; echo -e "\e[1;2;33mIPv4 Address:\e[0m $(ip route get 8.8.8.8 | awk 'NR==1 {print $7}')" >> ${OUT}
           echo -e "\e[1;2;33mPublic IPv4 Address:\e[0m $(curl https://ipv4.icanhazip.com)\n" >> ${OUT}
-          echo -e "\n\e[1;2;3;31mBy accessing this system, you consent to the following conditions:" >> ${OUT}
+          echo -e "\e[1;2;3;31mBy accessing this system, you consent to the following conditions:" >> ${OUT}
           echo -e "\e[0;37m- This system is for authorized use only." >> ${OUT}
           echo -e "- Any or all uses of this system and all files on this system may be monitored." >> ${OUT}
           echo -e "- Communications using, or data stored on, this system are not private.\e[0m\n" >> ${OUT}
