@@ -7,13 +7,9 @@
           
           OUT=/etc/motd.d/20_status.motd
           
-          echo -e "\e[0;38;2;20;140;20mWelcome to this server!" >> ${OUT}
-          echo -e "\e[0;38;2;180;30;30mBy accessing this system, you consent to the following conditions:" >> ${OUT}
-          echo -e "\e[0m- This system is for authorized use only." >> ${OUT}
-          echo -e "- Any or all uses of this system and all files on this system may be monitored." >> ${OUT}
-          echo -e "- Communications using, or data stored on, this system are not private." >> ${OUT}
-          echo -e "" >> ${OUT}
+          echo -e "\e[0;38;2;20;140;20mWelcome to \e[0;38;2;60;110;180mFedora CoreOS!" >> ${OUT}
           eval "$(grep -E ^PRETTY_NAME /etc/os-release)" && echo -e "\e[0;38;2;60;110;180mOperating System:\e[0m ${PRETTY_NAME}" >> ${OUT}
+          echo -e "\e[0;38;2;60;110;180mUpdate Status:\e[0m $(systemctl show zincati.service -P StatusText)" >> ${OUT}
           echo -e "\e[0;38;2;60;110;180mKernel:\e[0m $(uname -r)" >> ${OUT}
           echo -ne "\e[0;38;2;60;110;180mCPU:\e[0m $(grep ^processor /proc/cpuinfo | wc -l) cores, " >> ${OUT}
           echo "$(grep "^model name" /proc/cpuinfo | head -n1 | awk -F: '{print $2}' | awk -F' ' '{print $1, $2, $4, $5, $6}')" >> ${OUT}
@@ -26,6 +22,10 @@
           echo -e "\n\e[0;38;2;60;110;180mHostname:\e[0m "$(hostname -f) >> ${OUT}  
           sleep 1; echo -e "\e[0;38;2;60;110;180mIPv4 Address:\e[0m $(ip route get 8.8.8.8 | awk 'NR==1 {print $7}')" >> ${OUT}
           echo -e "\e[0;38;2;60;110;180mPublic IPv4 Address:\e[0m $(curl https://ipv4.icanhazip.com)\n" >> ${OUT}
+          echo -e "\n\e[33mBy accessing this system, you consent to the following conditions:" >> ${OUT}
+          echo -e "\e[33m- This system is for authorized use only." >> ${OUT}
+          echo -e "\e[33m- Any or all uses of this system and all files on this system may be monitored." >> ${OUT}
+          echo -e "\e[33m- Communications using, or data stored on, this system are not private.\n" >> ${OUT}
 
 # apply cloudinit script
     - path: /usr/local/bin/geco-cloudinit
