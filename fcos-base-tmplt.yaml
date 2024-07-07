@@ -268,12 +268,6 @@
 
           System information:
 
-# issue.net
-    - path: /etc/issue.net
-      overwrite: true
-      mode: 0644
-      contents: ""
-
 #blacklist protocol/drivers
     - path: /etc/modprobe.d/blacklist.conf
       mode: 0644
@@ -438,7 +432,7 @@ systemd:
         WantedBy=multi-user.target
     
     - name: status-motd.target
-      enabled: TimeoutStartSec
+      enabled: true
       contents: | 
         [Unit]
         Description=Run motd update once per hour
